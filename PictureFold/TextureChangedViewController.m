@@ -71,7 +71,7 @@ static GLKVector3 movementVectors[3] = {
      value:self.shouldRepeatTexture?GL_REPEAT:GL_CLAMP_TO_EDGE];
     
     [self.baseEffect.texture2d0
-     AGLKSetParameters:GL_TEXTURE_MIN_FILTER
+     AGLKSetParameters:GL_TEXTURE_MAG_FILTER
      value:self.shouldUseLinearFilter?GL_LINEAR:GL_NEAREST];
 }
 
@@ -85,19 +85,19 @@ static GLKVector3 movementVectors[3] = {
             if (vertices[i].positionCoords.x >=  1.0 ||
                 vertices[i].positionCoords.x <= -1.0)
             {
-                vertices[i].positionCoords.x -= movementVectors[i].x;
+                movementVectors[i].x = -movementVectors[i].x;
             }
             vertices[i].positionCoords.y += movementVectors[i].y;
             if (vertices[i].positionCoords.y >=  1.0 ||
                 vertices[i].positionCoords.y <= -1.0)
             {
-                vertices[i].positionCoords.y -= movementVectors[i].y;
+                movementVectors[i].y = -movementVectors[i].y;
             }
             vertices[i].positionCoords.z += movementVectors[i].z;
             if (vertices[i].positionCoords.z >=  1.0 ||
                 vertices[i].positionCoords.z <= -1.0)
             {
-                vertices[i].positionCoords.z -= movementVectors[i].z;
+                movementVectors[i].z = -movementVectors[i].z;
             }
         }
     }else
@@ -114,23 +114,60 @@ static GLKVector3 movementVectors[3] = {
     {
         int i;
         for (i = 0; i < 3; i++) {
-            vertices[i].positionCoords.s = defaultVertices[i].positionCoords.s + self.sCoordinateOffse;
+            vertices[i].textureCoords.s =
+            (defaultVertices[i].textureCoords.s +
+             self.sCoordinateOffse);
         }
     }
 }
 
 - (void)update{
-    [self updateTextureParameter];
     [self updateAnimatedVertexPosition];
+    [self updateTextureParameter];
     [self.vertexBuffer
-     reinitWithAttribStride:sizeof(vertices)
+     reinitWithAttribStride:sizeof(SceneVertex)
      numberOfVertices:sizeof(vertices)/sizeof(SceneVertex)
      bytes:vertices];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.preferredFramesPerSecond = 60;  //动画每秒60帧
+    self.shouldAnimating = YES;
+    self.shouldRepeatTexture = YES;
+    
+    GLKView *view = (GLKView *)self.view;
+    NSAssert([view isKindOfClass:[GLKView class]], @"view is not glkview");
+    
+    view.context = [[AGLContext alloc]initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    [AGLContext setCurrentContext:view.context];
+    
+    self.baseEffect = [[GLKBaseEffect alloc]init];
+    self.baseEffect.useConstantColor = GL_TRUE;
+    self.baseEffect.constantColor = GLKVector4Make(1.f, 1.f, 1.f, 1.0f);
+    
+    ((AGLContext *)view.context).aClearColor = GLKVector4Make(0.f, 0.f, 0.f, 1.0f);
+    
+    self.vertexBuffer =
+    [[AGLKVertexAttribArrayBuffer alloc]
+                         initWithAttribStribe:sizeof(SceneVertex)
+                         numberOfVertices:sizeof(vertices)/sizeof(SceneVertex)
+                         data:vertices
+                         usage:GL_DYNAMIC_DRAW];
+    
+    CGImageRef imageRef = [UIImage imageNamed:@"grid.png"].CGImage;
+    
+    GLKTextureInfo *textureInfo = [GLKTextureLoader
+                                   textureWithCGImage:imageRef
+                                   options:nil
+                                   error:NULL];
+
+    self.baseEffect.texture2d0.name = textureInfo.name;
+    self.baseEffect.texture2d0.target = textureInfo.target;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,6 +175,32 @@ static GLKVector3 movementVectors[3] = {
     // Dispose of any resources that can be recreated.
 }
 
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
+    [self.baseEffect prepareToDraw];
 
+    [(AGLContext *)view.context clear:GL_COLOR_BUFFER_BIT];
+    
+    [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribPosition numberOfCoordinates:3 attribOffset:offsetof(SceneVertex, positionCoords) shouldEnable:YES];
+    
+    [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord0 numberOfCoordinates:2 attribOffset:offsetof(SceneVertex, textureCoords) shouldEnable:YES];
+    
+    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES startVertexIndex:0 numberOfVertices:3];
+}
+
+- (IBAction)takeSCoordsOffset:(UISlider *)sender {
+    self.sCoordinateOffse = sender.value;
+}
+
+- (IBAction)takeLinearFilter:(UISwitch *)sender {
+    self.shouldUseLinearFilter = [sender isOn];
+}
+
+- (IBAction)takeAnimation:(UISwitch *)sender {
+    self.shouldAnimating = [sender isOn];
+}
+
+- (IBAction)takeRepeat:(UISwitch *)sender {
+    self.shouldRepeatTexture = [sender isOn];
+}
 
 @end

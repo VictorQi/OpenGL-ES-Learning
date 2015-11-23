@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4917ED831C0355F800BA28C7 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 4917ED821C0355F800BA28C7 /* grid.png */; };
 		D86FDBF81BFD68E4008E36EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDBF71BFD68E4008E36EC /* main.m */; };
 		D86FDBFB1BFD68E4008E36EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDBFA1BFD68E4008E36EC /* AppDelegate.m */; };
 		D86FDBFE1BFD68E4008E36EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDBFD1BFD68E4008E36EC /* ViewController.m */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4917ED821C0355F800BA28C7 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		D86FDBF31BFD68E3008E36EC /* PictureFold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureFold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86FDBF71BFD68E4008E36EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D86FDBF91BFD68E4008E36EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		D86FDBF61BFD68E4008E36EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4917ED821C0355F800BA28C7 /* grid.png */,
 				D86FDC0D1BFD71F4008E36EC /* aodamiao.png */,
 				D86FDC521C02A7CF008E36EC /* leaves.gif */,
 				D86FDC021BFD68E4008E36EC /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 				TargetAttributes = {
 					D86FDBF21BFD68E3008E36EC = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = YZ2L42YQ8T;
 					};
 				};
 			};
@@ -190,6 +194,7 @@
 				D86FDC0E1BFD71F4008E36EC /* aodamiao.png in Resources */,
 				D86FDC031BFD68E4008E36EC /* Assets.xcassets in Resources */,
 				D86FDC011BFD68E4008E36EC /* Main.storyboard in Resources */,
+				4917ED831C0355F800BA28C7 /* grid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,10 +324,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PictureFold/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ihefe.PictureFold;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihefe.PictureFold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -331,10 +337,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PictureFold/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ihefe.PictureFold;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ihefe.PictureFold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

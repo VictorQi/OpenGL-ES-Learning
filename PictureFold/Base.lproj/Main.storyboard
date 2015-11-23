@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -18,6 +18,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geW-ez-2nA">
                                 <rect key="frame" x="62" y="440" width="30" height="30"/>
+                                <animations/>
                                 <state key="normal" title="fold"/>
                                 <connections>
                                     <action selector="foldAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VXy-A8-PCs"/>
@@ -25,6 +26,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oq-25-r7h">
                                 <rect key="frame" x="224" y="440" width="35" height="30"/>
+                                <animations/>
                                 <state key="normal" title="reset"/>
                                 <connections>
                                     <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VnG-5r-fUn"/>
@@ -32,12 +34,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxX-KU-J27">
                                 <rect key="frame" x="134" y="440" width="53" height="30"/>
+                                <animations/>
                                 <state key="normal" title="capture"/>
                                 <connections>
                                     <action selector="capture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nC2-CV-67k"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -46,17 +50,69 @@
             </objects>
             <point key="canvasLocation" x="76.5" y="-2.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Texture Changed View Controller-->
         <scene sceneID="LfB-g6-ItE">
             <objects>
-                <viewController id="qyW-hB-4kv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gridTexture" id="qyW-hB-4kv" customClass="TextureChangedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G1h-uF-3ax"/>
                         <viewControllerLayoutGuide type="bottom" id="to4-7f-JjL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="G8k-Oj-6rI">
+                    <view key="view" contentMode="scaleToFill" id="G8k-Oj-6rI" customClass="GLKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3b1-f7-6N0">
+                                <rect key="frame" x="20" y="488" width="51" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="takeLinearFilter:" destination="qyW-hB-4kv" eventType="valueChanged" id="8XB-6B-TgT"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3EP-Yj-nRO">
+                                <rect key="frame" x="136" y="488" width="51" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="takeAnimation:" destination="qyW-hB-4kv" eventType="valueChanged" id="HoP-r1-0gY"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TH9-RI-ITf">
+                                <rect key="frame" x="251" y="488" width="51" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="takeRepeat:" destination="qyW-hB-4kv" eventType="valueChanged" id="WbS-9p-F1w"/>
+                                </connections>
+                            </switch>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="H13-rt-Rrh">
+                                <rect key="frame" x="18" y="439" width="284" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="takeSCoordsOffset:" destination="qyW-hB-4kv" eventType="valueChanged" id="OVj-jL-2gh"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Linear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTL-SM-yYV">
+                                <rect key="frame" x="18" y="539" width="47" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-F5-M7k">
+                                <rect key="frame" x="248" y="539" width="54" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVB-Zf-ngd">
+                                <rect key="frame" x="122" y="539" width="77" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "OpenGLViewController.h"
 #import "TextureViewController.h"
+#import "TextureChangedViewController.h"
 
 #define IMAGE_PER_HEIGHT 50
 
@@ -128,10 +129,8 @@ static bool isFolding = NO;
 }
 
 - (IBAction)capture:(id)sender {
-    TextureViewController *destination = [[TextureViewController alloc]init];
-    [self presentViewController:destination animated:YES completion:^{
-        
-    }];
+    TextureChangedViewController *destination = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"gridTexture"];
+    [self presentViewController:destination animated:YES completion:nil];
     NSLog(@"hehe");
 }
 
