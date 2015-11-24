@@ -49,7 +49,7 @@ static const SceneVertex vertices[] =
     
     ((AGLContext *)view.context).aClearColor = GLKVector4Make(0.8f, 0.3f, 0.4f, 1.0f);
     
-    self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStribe:sizeof(SceneVertex) numberOfVertices:sizeof(vertices)/sizeof(SceneVertex) data:vertices usage:GL_DYNAMIC_DRAW];
+    self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStribe:sizeof(SceneVertex) numberOfVertices:sizeof(vertices)/sizeof(SceneVertex) data:vertices usage:GL_STATIC_DRAW];
     
     CGImageRef imageRef1 = [UIImage imageNamed:@"leaves.gif"].CGImage;
     CGImageRef imageRef2 = [UIImage imageNamed:@"beetle.png"].CGImage;
@@ -59,7 +59,7 @@ static const SceneVertex vertices[] =
                                     options:
                                     [NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSNumber numberWithBool:YES],
-                                     GLKTextureLoaderOriginBottomLeft, nil]
+                                     GLKTextureLoaderOriginBottomLeft, nil]  //垂直翻转图象使之与OpenGL的坐标系重合
                                     error:NULL];
     self.textureInfo2 = [GLKTextureLoader
                                     textureWithCGImage:imageRef2
@@ -70,7 +70,7 @@ static const SceneVertex vertices[] =
                                     error:NULL];
     
     glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_COLOR);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
 }
 
@@ -110,6 +110,17 @@ static const SceneVertex vertices[] =
                         startVertexIndex:0
                         numberOfVertices:sizeof(vertices) / sizeof(SceneVertex)];
     
+}
+
+
+- (void)dealloc{
+    GLKView *view = (GLKView *)self.view;
+    [AGLContext setCurrentContext:view.context];
+    
+    self.vertexBuffer = nil;
+    
+    ((GLKView *)self.view).context = nil;
+    [EAGLContext setCurrentContext:nil];
 }
 
 @end

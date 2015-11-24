@@ -77,10 +77,9 @@ static const SceneVertex vertices[] =
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+
+- (void)dealloc{
     
-//    GLKView *view = (GLKView *)_drawView;
     [EAGLContext setCurrentContext:_drawView.context];
     
     if (0 != vertextBufferID) {
@@ -88,7 +87,6 @@ static const SceneVertex vertices[] =
         vertextBufferID = 0;
     }
     
-//    ((GLKView *)self.view).context = nil;
     _drawView.context = nil;
     [EAGLContext setCurrentContext:nil];
 }

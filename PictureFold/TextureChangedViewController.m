@@ -203,4 +203,14 @@ static GLKVector3 movementVectors[3] = {
     self.shouldRepeatTexture = [sender isOn];
 }
 
+- (void)dealloc{
+    GLKView *view = (GLKView *)self.view;
+    [AGLContext setCurrentContext:view.context];
+    
+    self.vertexBuffer = nil;
+    
+    ((GLKView *)self.view).context = nil;
+    [EAGLContext setCurrentContext:nil];
+}
+
 @end

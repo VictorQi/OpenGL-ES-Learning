@@ -89,6 +89,14 @@ static const SceneVertex vertices[]=
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)dealloc{
+    GLKView *view = (GLKView *)self.view;
+    [AGLContext setCurrentContext:view.context];
+    
+    self.vertexBuffer = nil;
+    
+    ((GLKView *)self.view).context = nil;
+    [EAGLContext setCurrentContext:nil];
+}
 
 @end

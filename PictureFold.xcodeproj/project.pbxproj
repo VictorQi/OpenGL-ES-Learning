@@ -27,6 +27,7 @@
 		D86FDC591C02F97E008E36EC /* TextureChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC581C02F97E008E36EC /* TextureChangedViewController.m */; };
 		D86FDC5C1C03FCCC008E36EC /* MixTextureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC5B1C03FCCC008E36EC /* MixTextureViewController.m */; };
 		D86FDC5E1C03FE92008E36EC /* beetle.png in Resources */ = {isa = PBXBuildFile; fileRef = D86FDC5D1C03FE92008E36EC /* beetle.png */; };
+		D86FDC611C045A11008E36EC /* MixTextureByLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC601C045A11008E36EC /* MixTextureByLevelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		D86FDC5A1C03FCCC008E36EC /* MixTextureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixTextureViewController.h; sourceTree = "<group>"; };
 		D86FDC5B1C03FCCC008E36EC /* MixTextureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixTextureViewController.m; sourceTree = "<group>"; };
 		D86FDC5D1C03FE92008E36EC /* beetle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beetle.png; sourceTree = "<group>"; };
+		D86FDC5F1C045A11008E36EC /* MixTextureByLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixTextureByLevelViewController.h; sourceTree = "<group>"; };
+		D86FDC601C045A11008E36EC /* MixTextureByLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixTextureByLevelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				D86FDC581C02F97E008E36EC /* TextureChangedViewController.m */,
 				D86FDC5A1C03FCCC008E36EC /* MixTextureViewController.h */,
 				D86FDC5B1C03FCCC008E36EC /* MixTextureViewController.m */,
+				D86FDC5F1C045A11008E36EC /* MixTextureByLevelViewController.h */,
+				D86FDC601C045A11008E36EC /* MixTextureByLevelViewController.m */,
 				D86FDC541C02E22E008E36EC /* AGLKTextureInfo.h */,
 				D86FDC551C02E22E008E36EC /* AGLKTextureInfo.m */,
 				D86FDC491BFF18AA008E36EC /* AGLContext.h */,
@@ -221,6 +226,7 @@
 				D86FDC561C02E22E008E36EC /* AGLKTextureInfo.m in Sources */,
 				D86FDC451BFEB3BE008E36EC /* OpenGLViewController.m in Sources */,
 				D86FDBFB1BFD68E4008E36EC /* AppDelegate.m in Sources */,
+				D86FDC611C045A11008E36EC /* MixTextureByLevelViewController.m in Sources */,
 				D86FDC4B1BFF18AA008E36EC /* AGLContext.m in Sources */,
 				D86FDBF81BFD68E4008E36EC /* main.m in Sources */,
 				D86FDC4E1BFF1C0C008E36EC /* AGLKVertexAttribArrayBuffer.m in Sources */,
