@@ -11,6 +11,7 @@
 #import "TextureViewController.h"
 #import "TextureChangedViewController.h"
 #import "MixTextureViewController.h"
+#import "MixTextureByLevelViewController.h"
 
 #define IMAGE_PER_HEIGHT 50
 
@@ -173,6 +174,12 @@ static bool isFolding = NO;
 - (IBAction)texture:(id)sender {
     TextureViewController *destination = [[TextureViewController alloc]init];
 
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (IBAction)levelMix:(UIButton *)sender {
+    MixTextureByLevelViewController *destination = [[MixTextureByLevelViewController alloc]init];
+    
     [self.navigationController pushViewController:destination animated:YES];
 }
 
