@@ -10,6 +10,7 @@
 #import "OpenGLViewController.h"
 #import "TextureViewController.h"
 #import "TextureChangedViewController.h"
+#import "MixTextureViewController.h"
 
 #define IMAGE_PER_HEIGHT 50
 
@@ -129,9 +130,9 @@ static bool isFolding = NO;
 }
 
 - (IBAction)capture:(id)sender {
-    TextureChangedViewController *destination = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"gridTexture"];
-    [self presentViewController:destination animated:YES completion:nil];
-    NSLog(@"hehe");
+    OpenGLViewController *destination = [[OpenGLViewController alloc]init];
+   [self.navigationController pushViewController:destination animated:YES];
+    
 }
 
 - (IBAction)resetAction:(id)sender {
@@ -158,4 +159,21 @@ static bool isFolding = NO;
                          
                      }];
 }
+
+- (IBAction)takeMixTexture:(UIButton *)sender {
+    MixTextureViewController *destination = [[MixTextureViewController alloc]init];
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (IBAction)textureMoved:(UIButton *)sender {
+    TextureChangedViewController *destination = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"gridTexture"];
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
+- (IBAction)texture:(id)sender {
+    TextureViewController *destination = [[TextureViewController alloc]init];
+
+    [self.navigationController pushViewController:destination animated:YES];
+}
+
 @end
