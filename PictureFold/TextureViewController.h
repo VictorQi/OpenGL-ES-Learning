@@ -10,6 +10,11 @@
 @class AGLKVertexAttribArrayBuffer;
 
 @interface TextureViewController : GLKViewController
+{
+    GLuint _program;
+    GLuint _vertexArray;
+    GLuint _texture0ID;
+}
 @property (strong, nonatomic) GLKBaseEffect *baseEffect;
 @property (strong, nonatomic) AGLKVertexAttribArrayBuffer *vertexBuffer;
 @end

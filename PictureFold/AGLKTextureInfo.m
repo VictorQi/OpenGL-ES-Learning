@@ -7,7 +7,7 @@
 //
 
 #import "AGLKTextureInfo.h"
-
+#import <OpenGLES/ES2/glext.h>
 typedef enum{
     AGLK1   = 1<<0,
     AGLK2   = 1<<1,
@@ -81,19 +81,21 @@ static NSData *AGLKDataWithResizedCGImageBytes(CGImageRef cgImage,
     GLuint textureBufferID;
     
     glGenTextures(1, &textureBufferID);
+    
     glBindTexture(GL_TEXTURE_2D, textureBufferID);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, [imageData bytes]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, width, height, 0, GL_LUMINANCE, GL_UNSIGNED_SHORT, [imageData bytes]);
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
     AGLKTextureInfo *result = [[AGLKTextureInfo alloc]initWithName:textureBufferID target:GL_TEXTURE_2D width:width height:height];
 
     return result;
 }
 
-static AGLKPowerOf2 AGLKCalculatePowerOf2ForDimension(
-                                                      GLuint dimension)
+static AGLKPowerOf2 AGLKCalculatePowerOf2ForDimension(GLuint dimension)
 {
     AGLKPowerOf2  result = AGLK1;
     
@@ -141,8 +143,7 @@ static AGLKPowerOf2 AGLKCalculatePowerOf2ForDimension(
     return result;
 }
 
-static NSData *AGLKDataWithResizedCGImageBytes(
-                                               CGImageRef cgImage,
+static NSData *AGLKDataWithResizedCGImageBytes(CGImageRef cgImage,
                                                size_t *widthPtr,
                                                size_t *heightPtr)
 {
@@ -166,7 +167,7 @@ static NSData *AGLKDataWithResizedCGImageBytes(
     // Allocate sufficient storage for RGBA pixel color data with
     // the power of 2 sizes specified
     NSMutableData    *imageData = [NSMutableData dataWithLength:
-                                   height * width * 4];  // 4 bytes per RGBA pixel
+                                   height * width * 1];  // 4 bytes per RGBA pixel
     
     NSCAssert(nil != imageData,
               @"Unable to allocate image storage");
@@ -176,8 +177,9 @@ static NSData *AGLKDataWithResizedCGImageBytes(
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef cgContext = CGBitmapContextCreate(
                                                    [imageData mutableBytes], width, height, 8,
-                                                   4 * width, colorSpace,
+                                                   4*width, colorSpace,
                                                    kCGImageAlphaPremultipliedLast);
+    
     CGColorSpaceRelease(colorSpace);
     
     // Flip the Core Graphics Y-axis for future drawing

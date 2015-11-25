@@ -10,6 +10,7 @@
 #import "AGLContext.h"
 #import "AGLKVertexAttribArrayBuffer.h"
 
+
 #pragma mark - GLKEffectPropertyTexture的类category
 @interface GLKEffectPropertyTexture (AKGLAdditions)
 
@@ -157,7 +158,7 @@ static GLKVector3 movementVectors[3] = {
                          data:vertices
                          usage:GL_DYNAMIC_DRAW];
     
-    CGImageRef imageRef = [UIImage imageNamed:@"grid.png"].CGImage;
+    CGImageRef imageRef = [UIImage imageNamed:@"1_AXIAL0.png"].CGImage;
     
     GLKTextureInfo *textureInfo = [GLKTextureLoader
                                    textureWithCGImage:imageRef

@@ -23,11 +23,14 @@
 		D86FDC4E1BFF1C0C008E36EC /* AGLKVertexAttribArrayBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC4D1BFF1C0C008E36EC /* AGLKVertexAttribArrayBuffer.m */; };
 		D86FDC511C02A3D8008E36EC /* TextureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC501C02A3D8008E36EC /* TextureViewController.m */; };
 		D86FDC531C02A7CF008E36EC /* leaves.gif in Resources */ = {isa = PBXBuildFile; fileRef = D86FDC521C02A7CF008E36EC /* leaves.gif */; };
-		D86FDC561C02E22E008E36EC /* AGLKTextureInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC551C02E22E008E36EC /* AGLKTextureInfo.m */; };
 		D86FDC591C02F97E008E36EC /* TextureChangedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC581C02F97E008E36EC /* TextureChangedViewController.m */; };
 		D86FDC5C1C03FCCC008E36EC /* MixTextureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC5B1C03FCCC008E36EC /* MixTextureViewController.m */; };
 		D86FDC5E1C03FE92008E36EC /* beetle.png in Resources */ = {isa = PBXBuildFile; fileRef = D86FDC5D1C03FE92008E36EC /* beetle.png */; };
 		D86FDC611C045A11008E36EC /* MixTextureByLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC601C045A11008E36EC /* MixTextureByLevelViewController.m */; };
+		D86FDC631C0565AD008E36EC /* 1_AXIAL0.png in Resources */ = {isa = PBXBuildFile; fileRef = D86FDC621C0565AD008E36EC /* 1_AXIAL0.png */; };
+		D86FDC6A1C05923F008E36EC /* AGLKTextureLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D86FDC691C05923F008E36EC /* AGLKTextureLoader.m */; };
+		D86FDC6E1C0598E1008E36EC /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D86FDC6C1C0598E1008E36EC /* Shader.fsh */; };
+		D86FDC6F1C0598E1008E36EC /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D86FDC6D1C0598E1008E36EC /* Shader.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,11 @@
 		D86FDC5D1C03FE92008E36EC /* beetle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beetle.png; sourceTree = "<group>"; };
 		D86FDC5F1C045A11008E36EC /* MixTextureByLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixTextureByLevelViewController.h; sourceTree = "<group>"; };
 		D86FDC601C045A11008E36EC /* MixTextureByLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixTextureByLevelViewController.m; sourceTree = "<group>"; };
+		D86FDC621C0565AD008E36EC /* 1_AXIAL0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_AXIAL0.png; sourceTree = "<group>"; };
+		D86FDC681C05923F008E36EC /* AGLKTextureLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLKTextureLoader.h; sourceTree = "<group>"; };
+		D86FDC691C05923F008E36EC /* AGLKTextureLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLKTextureLoader.m; sourceTree = "<group>"; };
+		D86FDC6C1C0598E1008E36EC /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		D86FDC6D1C0598E1008E36EC /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,8 @@
 				D86FDC5B1C03FCCC008E36EC /* MixTextureViewController.m */,
 				D86FDC5F1C045A11008E36EC /* MixTextureByLevelViewController.h */,
 				D86FDC601C045A11008E36EC /* MixTextureByLevelViewController.m */,
+				D86FDC681C05923F008E36EC /* AGLKTextureLoader.h */,
+				D86FDC691C05923F008E36EC /* AGLKTextureLoader.m */,
 				D86FDC541C02E22E008E36EC /* AGLKTextureInfo.h */,
 				D86FDC551C02E22E008E36EC /* AGLKTextureInfo.m */,
 				D86FDC491BFF18AA008E36EC /* AGLContext.h */,
@@ -122,6 +132,7 @@
 				D86FDC4D1BFF1C0C008E36EC /* AGLKVertexAttribArrayBuffer.m */,
 				D86FDC461BFEED65008E36EC /* AGLKView.h */,
 				D86FDC471BFEED65008E36EC /* AGLKView.m */,
+				D86FDC6B1C0598E1008E36EC /* Shaders */,
 				D86FDBF61BFD68E4008E36EC /* Supporting Files */,
 			);
 			path = PictureFold;
@@ -130,6 +141,7 @@
 		D86FDBF61BFD68E4008E36EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D86FDC621C0565AD008E36EC /* 1_AXIAL0.png */,
 				D86FDC5D1C03FE92008E36EC /* beetle.png */,
 				4917ED821C0355F800BA28C7 /* grid.png */,
 				D86FDC0D1BFD71F4008E36EC /* aodamiao.png */,
@@ -142,6 +154,15 @@
 				D86FDC3F1BFDCF55008E36EC /* GLKit.framework */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D86FDC6B1C0598E1008E36EC /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				D86FDC6C1C0598E1008E36EC /* Shader.fsh */,
+				D86FDC6D1C0598E1008E36EC /* Shader.vsh */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,12 +223,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D86FDC6E1C0598E1008E36EC /* Shader.fsh in Resources */,
 				D86FDC061BFD68E4008E36EC /* LaunchScreen.storyboard in Resources */,
 				D86FDC5E1C03FE92008E36EC /* beetle.png in Resources */,
 				D86FDC531C02A7CF008E36EC /* leaves.gif in Resources */,
+				D86FDC6F1C0598E1008E36EC /* Shader.vsh in Resources */,
 				D86FDC0E1BFD71F4008E36EC /* aodamiao.png in Resources */,
 				D86FDC031BFD68E4008E36EC /* Assets.xcassets in Resources */,
 				D86FDC011BFD68E4008E36EC /* Main.storyboard in Resources */,
+				D86FDC631C0565AD008E36EC /* 1_AXIAL0.png in Resources */,
 				4917ED831C0355F800BA28C7 /* grid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +247,7 @@
 				D86FDC481BFEED65008E36EC /* AGLKView.m in Sources */,
 				D86FDBFE1BFD68E4008E36EC /* ViewController.m in Sources */,
 				D86FDC511C02A3D8008E36EC /* TextureViewController.m in Sources */,
-				D86FDC561C02E22E008E36EC /* AGLKTextureInfo.m in Sources */,
+				D86FDC6A1C05923F008E36EC /* AGLKTextureLoader.m in Sources */,
 				D86FDC451BFEB3BE008E36EC /* OpenGLViewController.m in Sources */,
 				D86FDBFB1BFD68E4008E36EC /* AppDelegate.m in Sources */,
 				D86FDC611C045A11008E36EC /* MixTextureByLevelViewController.m in Sources */,
@@ -342,7 +366,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PictureFold/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihefe.PictureFold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -355,7 +379,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PictureFold/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ihefe.PictureFold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
