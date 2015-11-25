@@ -47,13 +47,26 @@ static const SceneVertex vertices[] =
     
     ((AGLContext *)view.context).aClearColor = GLKVector4Make(0.5f, 0.4f, 0.3f, 1.0f);
     
-    self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]
-                         initWithAttribStribe:sizeof(SceneVertex)
-                         numberOfVertices:sizeof(vertices)/sizeof(SceneVertex)
-                         data:vertices
-                         usage:GL_STATIC_DRAW];
+    self.vertexBuffer = [[AGLKVertexAttribArrayBuffer alloc]initWithAttribStribe:sizeof(SceneVertex)
+                                                                numberOfVertices:sizeof(vertices)/sizeof(SceneVertex)
+                                                                            data:vertices
+                                                                           usage:GL_STATIC_DRAW];
+    
+    CGImageRef imageRef1 = [UIImage imageNamed:@"leaves.gif"].CGImage;
+    CGImageRef imageRef2 = [UIImage imageNamed:@"beetle.png"].CGImage;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],GLKTextureLoaderOriginBottomLeft, nil];
     
     
+    GLKTextureInfo *textureInfo1 = [GLKTextureLoader textureWithCGImage:imageRef1 options:dict error:NULL];
+    
+    GLKTextureInfo *textureInfo2 = [GLKTextureLoader textureWithCGImage:imageRef2 options:dict error:NULL];
+    
+    self.baseEffect.texture2d0.name = textureInfo1.name;
+    self.baseEffect.texture2d0.target = textureInfo1.target;
+    
+    self.baseEffect.texture2d1.name = textureInfo2.name;
+    self.baseEffect.texture2d1.target = textureInfo2.target;
+    self.baseEffect.texture2d1.envMode = GLKTextureEnvModeDecal;
     
 }
 
@@ -62,14 +75,42 @@ static const SceneVertex vertices[] =
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
+    [(AGLContext *)view.context clear:GL_COLOR_BUFFER_BIT];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribPosition
+                           numberOfCoordinates:3
+                                  attribOffset:offsetof(SceneVertex, positionCoords)
+                                  shouldEnable:YES];
+    
+    [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord0
+                           numberOfCoordinates:2
+                                  attribOffset:offsetof(SceneVertex, textureCoords)
+                                  shouldEnable:YES];
+    
+    [self.vertexBuffer prepareToDrawWithAttrib:GLKVertexAttribTexCoord1
+                           numberOfCoordinates:2
+                                  attribOffset:offsetof(SceneVertex, textureCoords)
+                                  shouldEnable:YES];
+    
+    [self.baseEffect prepareToDraw];
+    
+    [self.vertexBuffer drawArrayWithMode:GL_TRIANGLES
+                        startVertexIndex:0
+                        numberOfVertices:sizeof(vertices)/sizeof(SceneVertex)];
+    
 }
-*/
+
+- (void)dealloc{
+    GLKView *view = (GLKView *)self.view;
+    [AGLContext setCurrentContext:view.context];
+    
+    self.vertexBuffer = nil;
+    
+    ((GLKView *)self.view).context = nil;
+    [EAGLContext setCurrentContext:nil];
+}
 
 @end
+
